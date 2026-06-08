@@ -1,27 +1,11 @@
 # vuln-scanner Skill Installer
-# Installs to: VS Code and Antigravity
+# Installs to: Copilot and Antigravity
 
-$skillName = "vuln-scanner"
-$source = "$env:USERPROFILE\Downloads\$skillName"
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.copilot\skills\vuln-scanner" | Out-Null
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.gemini\antigravity\skills\vuln-scanner" | Out-Null
 
-$targets = @(
-    "$env:USERPROFILE\.vscode\skills\$skillName",
-    "$env:USERPROFILE\.gemini\antigravity\skills\$skillName"
-)
-
-Write-Host ""
-Write-Host "Installing vuln-scanner skill..." -ForegroundColor Cyan
-Write-Host ""
-
-foreach ($target in $targets) {
-    try {
-        New-Item -ItemType Directory -Force -Path $target | Out-Null
-        Copy-Item -Path "$source\*" -Destination $target -Recurse -Force
-        Write-Host "  [OK] $target" -ForegroundColor Green
-    } catch {
-        Write-Host "  [SKIP] $target" -ForegroundColor Yellow
-    }
-}
+copy "$env:USERPROFILE\Downloads\vuln-scanner\SKILL.md" "$env:USERPROFILE\.copilot\skills\vuln-scanner\SKILL.md"
+copy "$env:USERPROFILE\Downloads\vuln-scanner\SKILL.md" "$env:USERPROFILE\.gemini\antigravity\skills\vuln-scanner\SKILL.md"
 
 Write-Host ""
 Write-Host "Done! Restart your IDE to activate the skill." -ForegroundColor Cyan
