@@ -10,7 +10,7 @@ $targets = @(
 )
 
 Write-Host ""
-Write-Host "Installing '$skillName' skill..." -ForegroundColor Cyan
+Write-Host "Installing vuln-scanner skill..." -ForegroundColor Cyan
 Write-Host ""
 
 foreach ($target in $targets) {
@@ -19,7 +19,7 @@ foreach ($target in $targets) {
         Copy-Item -Path "$source\*" -Destination $target -Recurse -Force
         Write-Host "  [OK] $target" -ForegroundColor Green
     } catch {
-        Write-Host "  [SKIP] $target — $($_.Exception.Message)" -ForegroundColor Yellow
+        Write-Host "  [SKIP] $target" -ForegroundColor Yellow
     }
 }
 
